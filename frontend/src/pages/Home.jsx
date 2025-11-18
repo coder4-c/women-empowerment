@@ -94,7 +94,7 @@ const Home = () => {
               mentorship, and community support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" as={Link} to="/register" className="text-lg px-8">
+              <Button size="lg" as={Link} to="/get-started" className="text-lg px-8">
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
