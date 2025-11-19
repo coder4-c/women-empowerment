@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "cd frontend && npm install --force && npm run build"
+  command = "npm install --force && npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -12,7 +12,7 @@
 
 [dev]
   publish = "dist"
-  command = "cd frontend && npm run dev"
+  command = "npm run dev"
   port = 5173
 
 [[headers]]
