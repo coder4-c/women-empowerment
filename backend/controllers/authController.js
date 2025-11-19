@@ -12,20 +12,29 @@ export const register = async (req, res) => {
     console.log('Register request:', req.body);
     const { name, email, password, role, region, skills, languages } = req.body;
 
+    // Validation
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Name, email, and password are required' });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({ message: 'Password must be at least 6 characters long' });
+    }
+
     const userExists = await User.findOne({ email });
     if (userExists) {
       console.log('User already exists:', email);
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: 'User with this email already exists' });
     }
 
     const user = await User.create({
-      name,
-      email,
+      name: name.trim(),
+      email: email.toLowerCase().trim(),
       passwordHash: password,
       role: role || 'user',
-      region,
-      skills,
-      languages
+      region: region || 'Global',
+      skills: skills || [],
+      languages: languages || []
     });
 
     console.log('User created:', user._id);
@@ -33,6 +42,7 @@ export const register = async (req, res) => {
 
     res.status(201).json({
       success: true,
+      message: 'Registration successful',
       user: {
         id: user._id,
         name: user.name,
@@ -43,9 +53,9 @@ export const register = async (req, res) => {
       token
     });
   } catch (error) {
-    console.error('Registration error:', error);
-    res.status(500).json({ message: error.message });
-  }
+   console.error('Registration error:', error);
+   res.status(500).json({ message: 'Registration failed. Please try again.' });
+ }
 };
 
 export const login = async (req, res) => {
