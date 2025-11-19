@@ -9,6 +9,8 @@ import Register from './pages/Register';
 import Resources from './pages/Resources';
 import Events from './pages/Events';
 import Mentorship from './pages/Mentorship';
+import Support from './pages/Support';
+import Testimonials from './pages/Testimonials';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import AdminPanel from './pages/AdminPanel';
@@ -24,6 +26,7 @@ import NewGoal from './pages/NewGoal';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import Chatbot from './components/chatbot/Chatbot';
 
 function App() {
   return (
@@ -42,6 +45,8 @@ function App() {
           <Route path="/events/register" element={<EventRegistration />} />
           <Route path="/mentorship" element={<Mentorship />} />
           <Route path="/mentorship/request" element={<MentorshipRequest />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           
           {/* Protected routes */}
           <Route path="/dashboard" element={
@@ -72,6 +77,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <Chatbot />
     </div>
   );
 }

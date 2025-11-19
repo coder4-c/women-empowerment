@@ -7,6 +7,7 @@ const Card = forwardRef(({
   hover = false,
   padding = 'default',
   shadow = 'md',
+  gradient = false,
   ...props
 }, ref) => {
   const paddingStyles = {
@@ -32,6 +33,7 @@ const Card = forwardRef(({
         'transition-shadow duration-300',
         shadowStyles[shadow],
         hover && 'hover:shadow-lg hover:-translate-y-1',
+        gradient && 'bg-gradient-to-br from-warm-50 to-vibrant-50 dark:from-gray-800 dark:to-gray-900',
         paddingStyles[padding],
         className
       )}

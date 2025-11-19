@@ -15,6 +15,11 @@ import eventRoutes from './routes/events.js';
 import mentorshipRoutes from './routes/mentorships.js';
 import reportRoutes from './routes/reports.js';
 import analyticsRoutes from './routes/analytics.js';
+import adviceRoutes from './routes/advice.js';
+import testimonialRoutes from './routes/testimonials.js';
+import partnerRoutes from './routes/partners.js';
+import subscriberRoutes from './routes/subscribers.js';
+import User from './models/User.js';
 
 dotenv.config();
 
@@ -48,6 +53,10 @@ app.use('/api/events', eventRoutes);
 app.use('/api/mentorships', mentorshipRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/advice', adviceRoutes);
+app.use('/api/testimonials', testimonialRoutes);
+app.use('/api/partners', partnerRoutes);
+app.use('/api/subscribers', subscriberRoutes);
 
 // Error handler
 app.use(errorHandler);

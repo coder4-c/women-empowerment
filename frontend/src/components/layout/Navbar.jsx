@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { 
-  Menu, 
-  X, 
-  Sun, 
-  Moon, 
-  User, 
-  LogOut, 
+import {
+  Menu,
+  X,
+  Sun,
+  Moon,
+  User,
+  LogOut,
   Settings,
   Heart,
   Calendar,
   BookOpen,
-  Users
+  Users,
+  HelpCircle,
+  Star
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useTheme } from '@/context/ThemeContext';
@@ -35,6 +37,8 @@ const Navbar = () => {
     { name: 'Resources', href: '/resources', icon: BookOpen },
     { name: 'Events', href: '/events', icon: Calendar },
     { name: 'Mentorship', href: '/mentorship', icon: Users },
+    { name: 'Support', href: '/support', icon: HelpCircle },
+    { name: 'Testimonials', href: '/testimonials', icon: Star },
   ];
 
   return (
