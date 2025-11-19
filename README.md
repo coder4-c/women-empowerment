@@ -8,7 +8,7 @@
 
 **🌟 [Visit the Live Application](https://women-empowermentsdgs.netlify.app/)**
 
-A comprehensive MERN stack platform designed to empower women through education, mentorship, and community building. This platform provides resources, organizes events, facilitates mentorship connections, and tracks progress toward career advancement.
+A comprehensive MERN stack platform designed to empower women through education, mentorship, and community building. This platform provides resources, organizes facilitates mentorship connections, and tracks progress toward career advancement.
 
 > **🔗 Quick Access**: [Live Portal](https://women-empowermentsdgs.netlify.app/) | **📱 Mobile Responsive** | **⚡ Lightning Fast**
 
@@ -32,7 +32,7 @@ A comprehensive MERN stack platform designed to empower women through education,
 - **🌙 Dark Mode Support** - Built-in dark/light theme switching
 
 ### User Roles
-- **Users** - Access resources, events, and mentorship
+- **Users** - Access resources, and mentorship
 - **Mentors** - Provide guidance and mentorship services
 - **Admins** - Full platform management capabilities
 
@@ -239,12 +239,12 @@ women-empowerment/
 - `PUT /api/resources/:id` - Update resource
 - `DELETE /api/resources/:id` - Delete resource
 
-### Event Endpoints
-- `GET /api/events` - Get all events
-- `GET /api/events/:id` - Get event by ID
-- `POST /api/events` - Create new event (admin/mentor)
-- `PUT /api/events/:id` - Update event
-- `DELETE /api/events/:id` - Delete event
+
+
+
+
+
+
 
 ### Mentorship Endpoints
 - `GET /api/mentorships` - Get mentorship connections
@@ -256,7 +256,7 @@ women-empowerment/
 - `GET /api/analytics/dashboard` - Get dashboard analytics
 - `GET /api/analytics/users` - User statistics
 - `GET /api/analytics/resources` - Resource analytics
-- `GET /api/analytics/events` - Event analytics
+
 
 ## 💻 Frontend Architecture
 
@@ -271,7 +271,7 @@ women-empowerment/
 - **React Query** - Server state management
 
 ### Routing
-- **Public Routes** - Home, Login, Register, Resources, Events, Mentorship
+- **Public Routes** - Home, Login, Register, Resources, Mentorship
 - **Protected Routes** - Dashboard, Profile (require authentication)
 - **Admin Routes** - Admin Panel (require admin role)
 
