@@ -10,11 +10,31 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env.*
 backend/.env
+backend/.env.local
+backend/.env.development
+backend/.env.production
 frontend/.env
 frontend/.env.local
 frontend/.env.development
 frontend/.env.production
+
+# Secrets and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+credentials.json
+config/secrets.js
+config/credentials.js
+
+# API keys and tokens
+api-keys.txt
+tokens.txt
+private-keys/
+service-account-*.json
 
 # Logs
 logs/
@@ -58,3 +78,12 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Uploads (if storing files locally)
+uploads/
+public/uploads/
