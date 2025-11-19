@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rm -rf node_modules package-lock.json && npm cache clean --force && npm install --force --no-audit --no-fund && vite build",
     "preview": "vite preview",
     "lint": "eslint src --ext js,jsx",
     "test": "vitest",
@@ -37,5 +37,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "globals": "^13.24.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }
