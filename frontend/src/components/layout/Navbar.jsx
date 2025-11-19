@@ -9,11 +9,11 @@ import {
   LogOut,
   Settings,
   Heart,
-  Calendar,
   BookOpen,
   Users,
   HelpCircle,
-  Star
+  Star,
+  Newspaper
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useTheme } from '@/context/ThemeContext';
@@ -35,7 +35,7 @@ const Navbar = () => {
   const navigation = [
     { name: 'Home', href: '/', icon: Heart },
     { name: 'Resources', href: '/resources', icon: BookOpen },
-    { name: 'Events', href: '/events', icon: Calendar },
+    { name: 'News', href: '/news', icon: Newspaper },
     { name: 'Mentorship', href: '/mentorship', icon: Users },
     { name: 'Support', href: '/support', icon: HelpCircle },
     { name: 'Testimonials', href: '/testimonials', icon: Star },

@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Resources from './pages/Resources';
-import Events from './pages/Events';
+import News from './pages/News';
 import Mentorship from './pages/Mentorship';
 import Support from './pages/Support';
 import Testimonials from './pages/Testimonials';
@@ -18,7 +18,6 @@ import NotFound from './pages/NotFound';
 
 // New pages
 import GetStarted from './pages/GetStarted';
-import EventRegistration from './pages/EventRegistration';
 import MentorshipRequest from './pages/MentorshipRequest';
 import NewGoal from './pages/NewGoal';
 
@@ -40,9 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/resources" element={<Resources />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/events/register/:eventId" element={<EventRegistration />} />
-          <Route path="/events/register" element={<EventRegistration />} />
+          <Route path="/news" element={<News />} />
           <Route path="/mentorship" element={<Mentorship />} />
           <Route path="/mentorship/request" element={<MentorshipRequest />} />
           <Route path="/support" element={<Support />} />

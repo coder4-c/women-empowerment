@@ -1,6 +1,5 @@
 import User from '../models/User.js';
 import Resource from '../models/Resource.js';
-import Event from '../models/Event.js';
 import Mentorship from '../models/Mentorship.js';
 
 export const getAnalytics = async (req, res) => {
@@ -27,14 +26,6 @@ export const getAnalytics = async (req, res) => {
       .limit(5)
       .select('title views category');
 
-    // Event statistics
-    const totalEvents = await Event.countDocuments();
-    const upcomingEvents = await Event.countDocuments({ status: 'upcoming' });
-    const eventAttendance = await Event.aggregate([
-      { $project: { attendeeCount: { $size: '$attendees' }, date: 1 } },
-      { $sort: { date: -1 } },
-      { $limit: 10 }
-    ]);
 
     // User growth over time (last 6 months)
     const sixMonthsAgo = new Date();
@@ -72,11 +63,6 @@ export const getAnalytics = async (req, res) => {
           byCategory: resourcesByCategory,
           topViewed: topResources
         },
-        events: {
-          total: totalEvents,
-          upcoming: upcomingEvents,
-          attendance: eventAttendance
-        }
       }
     });
   } catch (error) {
@@ -90,13 +76,8 @@ export const getImpactStats = async (req, res) => {
       totalUsers: await User.countDocuments(),
       totalMentorships: await Mentorship.countDocuments({ status: { $in: ['completed', 'active'] } }),
       totalResources: await Resource.countDocuments({ status: 'published' }),
-      totalEvents: await Event.countDocuments({ status: { $in: ['completed', 'upcoming'] } }),
       resourceViews: await Resource.aggregate([
         { $group: { _id: null, total: { $sum: '$views' } } }
-      ]),
-      eventAttendees: await Event.aggregate([
-        { $project: { attendeeCount: { $size: '$attendees' } } },
-        { $group: { _id: null, total: { $sum: '$attendeeCount' } } }
       ])
     };
 

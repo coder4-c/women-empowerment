@@ -24,6 +24,9 @@
   "license": "ISC",
   "description": "Backend API for Women Empowerment Platform",
   "dependencies": {
+    "googleapis": "^118.0.0",
+    "node-cron": "^3.0.2",
+    "axios": "^1.6.0",
     "axios": "^1.13.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

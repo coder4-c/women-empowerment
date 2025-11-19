@@ -61,13 +61,19 @@ export const API_ENDPOINTS = {
 
 // Resource categories
 export const RESOURCE_CATEGORIES = [
-  'Career Development',
-  'Entrepreneurship', 
+  'Empowerment',
+  'Research',
   'Leadership',
+  'Finance',
+  'Workplace',
+  'Health',
+  'Motivation',
+  'Music',
+  'Career Development',
+  'Entrepreneurship',
   'Technology',
   'Healthcare',
   'Education',
-  'Finance',
   'Legal Rights',
   'Mental Health',
   'Safety & Security',
