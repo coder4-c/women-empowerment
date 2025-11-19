@@ -9,7 +9,9 @@ import {
   TrendingUp,
   Globe,
   Award,
-  Play
+  Play,
+  Download,
+  UserPlus
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import Button from '@/components/common/Button';
@@ -75,6 +77,32 @@ const Home = () => {
       avatar: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=64&h=64&fit=crop&crop=face'
     }
   ];
+
+  const handleDownloadResources = () => {
+    // Create a simple text file with resource links
+    const content = `
+Women Empowerment Platform - Resource Collection
+
+Educational Resources:
+- Leadership Development Guide
+- Career Advancement Toolkit
+- Networking Best Practices
+- Salary Negotiation Guide
+- Work-Life Balance Strategies
+
+Visit our platform at https://your-platform.com/resources for more!
+    `;
+    
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'women-empowerment-resources.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="min-h-screen">
@@ -178,8 +206,62 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Stories */}
+      {/* Action Buttons Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Take Action Today
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              Ready to make a difference? Get involved with our community
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <Card className="p-6 text-center">
+              <Calendar className="h-12 w-12 text-primary-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Register for Event
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Join our upcoming workshops and networking events
+              </p>
+              <Button as={Link} to="/events/register" className="w-full">
+                Register Now
+              </Button>
+            </Card>
+
+            <Card className="p-6 text-center">
+              <UserPlus className="h-12 w-12 text-primary-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Request Mentorship
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Connect with experienced mentors for guidance
+              </p>
+              <Button as={Link} to="/mentorship/request" className="w-full">
+                Find Mentor
+              </Button>
+            </Card>
+
+            <Card className="p-6 text-center">
+              <Download className="h-12 w-12 text-primary-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Download Resources
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Access our curated collection of helpful materials
+              </p>
+              <Button onClick={handleDownloadResources} className="w-full">
+                Download Now
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Stories */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">

@@ -16,6 +16,9 @@ import NotFound from './pages/NotFound';
 
 // New pages
 import GetStarted from './pages/GetStarted';
+import EventRegistration from './pages/EventRegistration';
+import MentorshipRequest from './pages/MentorshipRequest';
+import NewGoal from './pages/NewGoal';
 
 // Layout components
 import Navbar from './components/layout/Navbar';
@@ -35,12 +38,20 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/events/register/:eventId" element={<EventRegistration />} />
+          <Route path="/events/register" element={<EventRegistration />} />
           <Route path="/mentorship" element={<Mentorship />} />
+          <Route path="/mentorship/request" element={<MentorshipRequest />} />
           
           {/* Protected routes */}
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/goals/new" element={
+            <ProtectedRoute>
+              <NewGoal />
             </ProtectedRoute>
           } />
           <Route path="/profile" element={
