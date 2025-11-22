@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Resources from './pages/Resources';
 import News from './pages/News';
+import Events from './pages/Events';
 import Mentorship from './pages/Mentorship';
 import Support from './pages/Support';
 import Testimonials from './pages/Testimonials';
@@ -40,6 +41,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/news" element={<News />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/events/register" element={<Events />} />
           <Route path="/mentorship" element={<Mentorship />} />
           <Route path="/mentorship/request" element={<MentorshipRequest />} />
           <Route path="/support" element={<Support />} />
