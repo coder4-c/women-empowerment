@@ -13,7 +13,7 @@ const News = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch('/api/external/news');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/external/news`);
       const data = await response.json();
 
       if (data.success) {
