@@ -1,13 +1,24 @@
-import { Calendar, Users, Clock, MapPin, ExternalLink, RefreshCw } from 'lucide-react';
+import { Calendar, Users, Clock, MapPin, ExternalLink, RefreshCw, X, User, Mail, Phone } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Button from '@/components/common/Button';
 import Card from '@/components/common/Card';
+import Input from '@/components/common/Input';
 import toast from 'react-hot-toast';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
+  const [registrationData, setRegistrationData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchEvents = async () => {
     try {
@@ -74,9 +85,55 @@ const Events = () => {
   }, []);
 
   const handleRegister = (event) => {
-    toast.success(`Registration opened for: ${event.title}`);
-    // In a real app, this would redirect to registration form
-    window.open(event.registrationLink, '_blank');
+    setSelectedEvent(event);
+    setShowRegistrationModal(true);
+    setRegistrationData({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      message: ''
+    });
+  };
+
+  const handleRegistrationSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!registrationData.name || !registrationData.email) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Update event registration count
+      setEvents(prevEvents => 
+        prevEvents.map(event => 
+          event.id === selectedEvent.id 
+            ? { ...event, registered: event.registered + 1 }
+            : event
+        )
+      );
+
+      toast.success(`Successfully registered for ${selectedEvent.title}!`);
+      setShowRegistrationModal(false);
+      setSelectedEvent(null);
+    } catch (error) {
+      toast.error('Registration failed. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setRegistrationData({
+      ...registrationData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const isUpcoming = (date) => {
@@ -240,6 +297,120 @@ const Events = () => {
               </div>
             )}
           </>
+        )}
+
+        {/* Registration Modal */}
+        {showRegistrationModal && selectedEvent && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+              <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  Register for Event
+                </h3>
+                <button
+                  onClick={() => setShowRegistrationModal(false)}
+                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              
+              <div className="p-6">
+                <div className="mb-4 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
+                  <h4 className="font-semibold text-primary-900 dark:text-primary-100 mb-2">
+                    {selectedEvent.title}
+                  </h4>
+                  <div className="text-sm text-primary-700 dark:text-primary-300 space-y-1">
+                    <div className="flex items-center">
+                      <Calendar className="h-4 w-4 mr-2" />
+                      {selectedEvent.date}
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="h-4 w-4 mr-2" />
+                      {selectedEvent.time}
+                    </div>
+                    <div className="flex items-center">
+                      <MapPin className="h-4 w-4 mr-2" />
+                      {selectedEvent.location}
+                    </div>
+                  </div>
+                </div>
+
+                <form onSubmit={handleRegistrationSubmit} className="space-y-4">
+                  <Input
+                    label="Full Name *"
+                    name="name"
+                    value={registrationData.name}
+                    onChange={handleInputChange}
+                    placeholder="Enter your full name"
+                    icon={User}
+                    required
+                  />
+                  
+                  <Input
+                    label="Email Address *"
+                    name="email"
+                    type="email"
+                    value={registrationData.email}
+                    onChange={handleInputChange}
+                    placeholder="Enter your email"
+                    icon={Mail}
+                    required
+                  />
+                  
+                  <Input
+                    label="Phone Number"
+                    name="phone"
+                    type="tel"
+                    value={registrationData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Enter your phone number"
+                    icon={Phone}
+                  />
+                  
+                  <Input
+                    label="Company/Organization"
+                    name="company"
+                    value={registrationData.company}
+                    onChange={handleInputChange}
+                    placeholder="Enter your company name"
+                  />
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Additional Message
+                    </label>
+                    <textarea
+                      name="message"
+                      value={registrationData.message}
+                      onChange={handleInputChange}
+                      rows={3}
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      placeholder="Any special requirements or questions..."
+                    />
+                  </div>
+
+                  <div className="flex gap-3 pt-4">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setShowRegistrationModal(false)}
+                      className="flex-1"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="flex-1"
+                    >
+                      {isSubmitting ? 'Registering...' : 'Register Now'}
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
